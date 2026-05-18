@@ -1,0 +1,665 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #F5F0E8;
+    --warm: #C4956A;
+    --deep: #3D2B1F;
+    --rust: #A85C3C;
+    --sage: #7A8C6E;
+    --offwhite: #FAF7F2;
+    --border: rgba(61,43,31,0.12);
+  }
+
+  body { font-family: 'Lato', sans-serif; background: var(--offwhite); color: var(--deep); }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--offwhite);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 600;
+    letter-spacing: 0.02em; color: var(--deep);
+  }
+
+  .logo span { color: var(--rust); font-style: italic; }
+
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul li a {
+    text-decoration: none; font-size: 0.85rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--deep); font-weight: 400;
+    transition: color 0.2s;
+  }
+  nav ul li a:hover, nav ul li a.active { color: var(--rust); }
+
+  section { display: none; }
+  section.active { display: block; }
+
+  /* HERO */
+  .hero {
+    min-height: 88vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .hero-text { padding: 4rem 3rem 4rem 4rem; }
+
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--rust);
+    margin-bottom: 1.25rem; font-weight: 700;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    line-height: 1.2; color: var(--deep);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title em { color: var(--rust); font-style: italic; }
+
+  .hero-desc {
+    font-size: 1rem; line-height: 1.8;
+    color: rgba(61,43,31,0.7);
+    max-width: 420px; margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .btn-primary {
+    background: var(--deep); color: var(--offwhite);
+    border: none; padding: 0.9rem 2.5rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.82rem; letter-spacing: 0.15em;
+    text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--rust); }
+
+  .btn-outline {
+    background: transparent; color: var(--deep);
+    border: 1px solid var(--deep); padding: 0.9rem 2.5rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.82rem; letter-spacing: 0.15em;
+    text-transform: uppercase; cursor: pointer;
+    margin-left: 1rem; transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--deep); color: var(--offwhite); }
+
+  .hero-image {
+    background: var(--cream);
+    min-height: 88vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-textile {
+    width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .weave-pattern {
+    width: 340px; height: 420px;
+    position: relative;
+  }
+
+  /* FEATURES */
+  .features {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--border);
+  }
+
+  .feature {
+    padding: 3rem 2.5rem;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .feature:last-child { border-right: none; }
+
+  .feature-icon {
+    width: 48px; height: 48px; margin: 0 auto 1.25rem;
+    background: var(--cream); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--rust); font-size: 1.3rem;
+  }
+
+  .feature h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--deep);
+  }
+
+  .feature p { font-size: 0.88rem; color: rgba(61,43,31,0.65); line-height: 1.7; }
+
+  /* CATALOG */
+  .catalog-header {
+    text-align: center; padding: 4rem 2rem 2.5rem;
+  }
+
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--rust);
+    margin-bottom: 0.75rem; font-weight: 700;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; color: var(--deep);
+  }
+
+  .catalog-filters {
+    display: flex; gap: 0.75rem;
+    justify-content: center; padding: 1rem 2rem 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: transparent; border: 1px solid var(--border);
+    padding: 0.5rem 1.5rem; font-family: 'Lato', sans-serif;
+    font-size: 0.78rem; letter-spacing: 0.1em;
+    text-transform: uppercase; cursor: pointer;
+    color: var(--deep); transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--deep); color: var(--offwhite); border-color: var(--deep);
+  }
+
+  .product-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; padding: 0 2rem 4rem;
+  }
+
+  .product-card { background: var(--cream); position: relative; cursor: pointer; overflow: hidden; }
+
+  .product-img {
+    width: 100%; aspect-ratio: 3/4;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  .product-tag {
+    position: absolute; top: 1rem; left: 1rem;
+    background: var(--rust); color: white;
+    font-size: 0.7rem; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.3rem 0.75rem;
+  }
+
+  .product-info { padding: 1.25rem 1.5rem 1.5rem; background: var(--offwhite); }
+
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--deep); margin-bottom: 0.3rem;
+  }
+
+  .product-artisan { font-size: 0.78rem; color: var(--sage); margin-bottom: 0.5rem; }
+
+  .product-price { font-size: 0.9rem; color: var(--rust); font-weight: 700; }
+
+  /* ABOUT */
+  .about-layout {
+    display: grid; grid-template-columns: 1fr 1fr; min-height: 60vh;
+  }
+
+  .about-image-side {
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    padding: 4rem;
+  }
+
+  .about-text-side { padding: 5rem 4rem; }
+
+  .about-text-side p {
+    font-size: 0.95rem; line-height: 1.9;
+    color: rgba(61,43,31,0.75); margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+
+  .artisan-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; padding: 3rem 3rem 5rem;
+  }
+
+  .artisan-card {
+    text-align: center; padding: 2rem 1.5rem;
+    border: 1px solid var(--border);
+  }
+
+  .artisan-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    margin: 0 auto 1rem; display: flex; align-items: center;
+    justify-content: center; font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: var(--offwhite); background: var(--warm);
+  }
+
+  .artisan-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--deep); margin-bottom: 0.25rem;
+  }
+  .artisan-region { font-size: 0.8rem; color: var(--sage); }
+
+  /* CONTACT */
+  .contact-layout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    min-height: 70vh;
+  }
+
+  .contact-info {
+    background: var(--deep); color: var(--offwhite);
+    padding: 5rem 4rem;
+  }
+
+  .contact-info .section-label { color: var(--warm); }
+  .contact-info .section-title { color: var(--offwhite); margin-bottom: 2rem; }
+
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .contact-detail i { color: var(--warm); font-size: 1.1rem; margin-top: 2px; }
+
+  .contact-detail div p:first-child {
+    font-size: 0.75rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(250,247,242,0.5);
+    margin-bottom: 0.2rem;
+  }
+
+  .contact-detail div p:last-child { font-size: 0.95rem; color: var(--offwhite); }
+
+  .contact-form { padding: 5rem 4rem; }
+
+  .form-group { margin-bottom: 1.5rem; }
+
+  .form-group label {
+    display: block; font-size: 0.75rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--deep); margin-bottom: 0.5rem; font-weight: 700;
+  }
+
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; background: var(--cream);
+    border: 1px solid var(--border); padding: 0.85rem 1rem;
+    font-family: 'Lato', sans-serif; font-size: 0.9rem;
+    color: var(--deep); outline: none; transition: border-color 0.2s;
+    border-radius: 0;
+  }
+
+  .form-group input:focus, .form-group textarea:focus {
+    border-color: var(--rust);
+  }
+
+  .form-group textarea { height: 120px; resize: vertical; }
+
+  footer {
+    background: var(--deep); color: rgba(250,247,242,0.5);
+    text-align: center; padding: 2rem;
+    font-size: 0.8rem; letter-spacing: 0.05em;
+    border-top: 1px solid rgba(250,247,242,0.1);
+  }
+
+  footer span { color: var(--warm); }
+</style>
+
+<nav>
+  <div class="logo">Lana<span>UY</span></div>
+  <ul>
+    <li><a href="#" class="active" onclick="showSection('inicio', this)">Inicio</a></li>
+    <li><a href="#" onclick="showSection('catalogo', this)">Catálogo</a></li>
+    <li><a href="#" onclick="showSection('nosotros', this)">Nosotros</a></li>
+    <li><a href="#" onclick="showSection('contacto', this)">Contacto</a></li>
+  </ul>
+</nav>
+
+<section id="inicio" class="active">
+  <div class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Hecho a mano · Uruguay</p>
+      <h1 class="hero-title">Tejidos con<br>alma <em>uruguaya</em></h1>
+      <p class="hero-desc">Cada pieza es creada a mano por tejedoras artesanas de todo el Uruguay. Lana natural, colores únicos y amor en cada punto.</p>
+      <button class="btn-primary" onclick="showSection('catalogo', document.querySelector('nav ul li:nth-child(2) a'))">Ver catálogo</button>
+      <button class="btn-outline" onclick="showSection('nosotros', document.querySelector('nav ul li:nth-child(3) a'))">Nuestra historia</button>
+    </div>
+    <div class="hero-image">
+      <div class="hero-textile">
+        <svg viewBox="0 0 340 420" width="340" height="420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="weave" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <rect width="10" height="10" fill="#C4956A" opacity="0.6"/>
+              <rect x="10" y="10" width="10" height="10" fill="#C4956A" opacity="0.6"/>
+              <rect x="10" y="0" width="10" height="10" fill="#A85C3C" opacity="0.35"/>
+              <rect x="0" y="10" width="10" height="10" fill="#A85C3C" opacity="0.35"/>
+            </pattern>
+          </defs>
+          <rect x="40" y="40" width="260" height="340" rx="4" fill="url(#weave)"/>
+          <rect x="40" y="40" width="260" height="8" fill="#7A8C6E" opacity="0.5"/>
+          <rect x="40" y="68" width="260" height="8" fill="#3D2B1F" opacity="0.25"/>
+          <rect x="40" y="96" width="260" height="8" fill="#7A8C6E" opacity="0.5"/>
+          <rect x="40" y="124" width="260" height="8" fill="#3D2B1F" opacity="0.25"/>
+          <rect x="40" y="152" width="260" height="8" fill="#A85C3C" opacity="0.5"/>
+          <rect x="40" y="180" width="260" height="8" fill="#7A8C6E" opacity="0.5"/>
+          <rect x="40" y="208" width="260" height="8" fill="#3D2B1F" opacity="0.25"/>
+          <rect x="40" y="236" width="260" height="8" fill="#7A8C6E" opacity="0.5"/>
+          <rect x="40" y="264" width="260" height="8" fill="#A85C3C" opacity="0.5"/>
+          <rect x="40" y="292" width="260" height="8" fill="#3D2B1F" opacity="0.25"/>
+          <rect x="40" y="320" width="260" height="8" fill="#7A8C6E" opacity="0.5"/>
+          <rect x="40" y="348" width="260" height="8" fill="#A85C3C" opacity="0.5"/>
+          <rect x="40" y="40" width="8" height="340" fill="#3D2B1F" opacity="0.12"/>
+          <rect x="68" y="40" width="8" height="340" fill="#A85C3C" opacity="0.2"/>
+          <rect x="96" y="40" width="8" height="340" fill="#3D2B1F" opacity="0.12"/>
+          <rect x="124" y="40" width="8" height="340" fill="#7A8C6E" opacity="0.25"/>
+          <rect x="152" y="40" width="8" height="340" fill="#3D2B1F" opacity="0.12"/>
+          <rect x="180" y="40" width="8" height="340" fill="#A85C3C" opacity="0.2"/>
+          <rect x="208" y="40" width="8" height="340" fill="#3D2B1F" opacity="0.12"/>
+          <rect x="236" y="40" width="8" height="340" fill="#7A8C6E" opacity="0.25"/>
+          <rect x="264" y="40" width="8" height="340" fill="#3D2B1F" opacity="0.12"/>
+          <rect x="292" y="40" width="8" height="340" fill="#A85C3C" opacity="0.2"/>
+          <text x="170" y="400" text-anchor="middle" font-family="Playfair Display, serif" font-size="13" fill="#3D2B1F" opacity="0.5" font-style="italic">tejido a mano · hecho con amor</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon"><i class="ti ti-scissors" aria-hidden="true"></i></div>
+      <h3>100% artesanal</h3>
+      <p>Cada prenda es tejida a mano, pieza única, sin producción en serie.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon"><i class="ti ti-leaf" aria-hidden="true"></i></div>
+      <h3>Lana natural</h3>
+      <p>Usamos lana uruguaya de oveja merino, suave y de máxima calidad.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon"><i class="ti ti-heart" aria-hidden="true"></i></div>
+      <h3>Tejedoras locales</h3>
+      <p>Apoyamos a artesanas de todo el Uruguay, valorizando su trabajo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="catalogo">
+  <div class="catalog-header">
+    <p class="section-label">Colección 2025</p>
+    <h2 class="section-title">Nuestras piezas</h2>
+  </div>
+
+  <div class="catalog-filters">
+    <button class="filter-btn active">Todo</button>
+    <button class="filter-btn">Sacos</button>
+    <button class="filter-btn">Ponchos</button>
+    <button class="filter-btn">Accesorios</button>
+    <button class="filter-btn">Mantas</button>
+  </div>
+
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-img" style="background: #D4B896;">
+        <svg viewBox="0 0 200 260" width="120" height="156" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="60" rx="35" ry="35" fill="#C4956A" opacity="0.6"/>
+          <path d="M40 100 Q60 85 100 95 Q140 85 160 100 L170 220 Q100 240 30 220 Z" fill="#A85C3C" opacity="0.75"/>
+          <path d="M40 100 Q20 110 15 150 L35 155 Q38 130 50 120 Z" fill="#A85C3C" opacity="0.6"/>
+          <path d="M160 100 Q180 110 185 150 L165 155 Q162 130 150 120 Z" fill="#A85C3C" opacity="0.6"/>
+          <line x1="60" y1="110" x2="60" y2="210" stroke="#7A8C6E" stroke-width="2" opacity="0.4"/>
+          <line x1="80" y1="108" x2="80" y2="215" stroke="#7A8C6E" stroke-width="2" opacity="0.4"/>
+          <line x1="100" y1="107" x2="100" y2="218" stroke="#7A8C6E" stroke-width="2" opacity="0.4"/>
+          <line x1="120" y1="108" x2="120" y2="215" stroke="#7A8C6E" stroke-width="2" opacity="0.4"/>
+          <line x1="140" y1="110" x2="140" y2="210" stroke="#7A8C6E" stroke-width="2" opacity="0.4"/>
+        </svg>
+        <div class="product-tag">Nuevo</div>
+      </div>
+      <div class="product-info">
+        <p class="product-name">Saco Pampa</p>
+        <p class="product-artisan">Por María E. · Tacuarembó</p>
+        <p class="product-price">$2.800 UYU</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: #B8C4AD;">
+        <svg viewBox="0 0 200 260" width="120" height="156" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 80 L100 50 L160 80 L175 230 L25 230 Z" fill="#7A8C6E" opacity="0.7"/>
+          <path d="M40 80 L100 50 L160 80" stroke="#3D2B1F" stroke-width="3" fill="none" opacity="0.3"/>
+          <line x1="50" y1="95" x2="50" y2="220" stroke="#FAF7F2" stroke-width="1.5" opacity="0.3"/>
+          <line x1="70" y1="90" x2="70" y2="225" stroke="#FAF7F2" stroke-width="1.5" opacity="0.3"/>
+          <line x1="90" y1="88" x2="90" y2="228" stroke="#FAF7F2" stroke-width="1.5" opacity="0.3"/>
+          <line x1="110" y1="88" x2="110" y2="228" stroke="#FAF7F2" stroke-width="1.5" opacity="0.3"/>
+          <line x1="130" y1="90" x2="130" y2="225" stroke="#FAF7F2" stroke-width="1.5" opacity="0.3"/>
+          <line x1="150" y1="95" x2="150" y2="220" stroke="#FAF7F2" stroke-width="1.5" opacity="0.3"/>
+          <ellipse cx="100" cy="55" rx="18" ry="18" fill="#3D2B1F" opacity="0.2"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <p class="product-name">Poncho Campo</p>
+        <p class="product-artisan">Por Rosa L. · Rivera</p>
+        <p class="product-price">$3.500 UYU</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: #D4C0A8;">
+        <svg viewBox="0 0 200 260" width="120" height="156" xmlns="http://www.w3.org/2000/svg">
+          <rect x="50" y="60" width="100" height="160" rx="4" fill="#C4956A" opacity="0.6"/>
+          <rect x="50" y="60" width="100" height="10" fill="#A85C3C" opacity="0.6"/>
+          <rect x="50" y="80" width="100" height="10" fill="#7A8C6E" opacity="0.5"/>
+          <rect x="50" y="100" width="100" height="10" fill="#A85C3C" opacity="0.6"/>
+          <rect x="50" y="120" width="100" height="10" fill="#7A8C6E" opacity="0.5"/>
+          <rect x="50" y="140" width="100" height="10" fill="#A85C3C" opacity="0.6"/>
+          <rect x="50" y="160" width="100" height="10" fill="#7A8C6E" opacity="0.5"/>
+          <rect x="50" y="180" width="100" height="10" fill="#A85C3C" opacity="0.6"/>
+          <rect x="50" y="200" width="100" height="10" fill="#7A8C6E" opacity="0.5"/>
+          <ellipse cx="100" cy="55" rx="22" ry="12" fill="none" stroke="#A85C3C" stroke-width="3" opacity="0.5"/>
+        </svg>
+        <div class="product-tag">Popular</div>
+      </div>
+      <div class="product-info">
+        <p class="product-name">Bufanda Rayada</p>
+        <p class="product-artisan">Por Carmen V. · Paysandú</p>
+        <p class="product-price">$1.200 UYU</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: #C8B4A0;">
+        <svg viewBox="0 0 200 260" width="120" height="156" xmlns="http://www.w3.org/2000/svg">
+          <rect x="30" y="80" width="140" height="110" rx="6" fill="#A85C3C" opacity="0.55"/>
+          <line x1="30" y1="95" x2="170" y2="95" stroke="#FAF7F2" stroke-width="2" opacity="0.25"/>
+          <line x1="30" y1="110" x2="170" y2="110" stroke="#FAF7F2" stroke-width="2" opacity="0.25"/>
+          <line x1="30" y1="125" x2="170" y2="125" stroke="#FAF7F2" stroke-width="2" opacity="0.25"/>
+          <line x1="30" y1="140" x2="170" y2="140" stroke="#FAF7F2" stroke-width="2" opacity="0.25"/>
+          <line x1="30" y1="155" x2="170" y2="155" stroke="#FAF7F2" stroke-width="2" opacity="0.25"/>
+          <line x1="30" y1="170" x2="170" y2="170" stroke="#FAF7F2" stroke-width="2" opacity="0.25"/>
+          <path d="M30 190 Q100 210 170 190" stroke="#C4956A" stroke-width="3" fill="none" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <p class="product-name">Manta Terracota</p>
+        <p class="product-artisan">Por Lucía M. · Cerro Largo</p>
+        <p class="product-price">$4.200 UYU</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: #BEC9B8;">
+        <svg viewBox="0 0 200 260" width="120" height="156" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="60" fill="none" stroke="#7A8C6E" stroke-width="18" opacity="0.6"/>
+          <circle cx="100" cy="100" r="40" fill="none" stroke="#A85C3C" stroke-width="10" opacity="0.5"/>
+          <circle cx="100" cy="100" r="22" fill="none" stroke="#C4956A" stroke-width="8" opacity="0.6"/>
+          <circle cx="100" cy="100" r="8" fill="#3D2B1F" opacity="0.3"/>
+          <text x="100" y="195" text-anchor="middle" font-family="Lato" font-size="11" fill="#3D2B1F" opacity="0.45">boina artesanal</text>
+        </svg>
+      </div>
+      <div class="product-info">
+        <p class="product-name">Boina Tradicional</p>
+        <p class="product-artisan">Por Ana T. · Durazno</p>
+        <p class="product-price">$950 UYU</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: #D0B8A0;">
+        <svg viewBox="0 0 200 260" width="120" height="156" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60 70 Q100 55 140 70 L155 200 Q100 215 45 200 Z" fill="#C4956A" opacity="0.65"/>
+          <path d="M60 70 Q50 90 45 140 L60 145 Q62 100 70 85 Z" fill="#C4956A" opacity="0.5"/>
+          <path d="M140 70 Q150 90 155 140 L140 145 Q138 100 130 85 Z" fill="#C4956A" opacity="0.5"/>
+          <rect x="78" y="55" width="44" height="18" rx="9" fill="#3D2B1F" opacity="0.2"/>
+          <line x1="72" y1="100" x2="128" y2="100" stroke="#FAF7F2" stroke-width="2" opacity="0.3"/>
+          <line x1="68" y1="120" x2="132" y2="120" stroke="#FAF7F2" stroke-width="2" opacity="0.3"/>
+          <line x1="66" y1="140" x2="134" y2="140" stroke="#FAF7F2" stroke-width="2" opacity="0.3"/>
+          <line x1="65" y1="160" x2="135" y2="160" stroke="#FAF7F2" stroke-width="2" opacity="0.3"/>
+          <div class="product-tag">Nuevo</div>
+        </svg>
+        <div class="product-tag">Nuevo</div>
+      </div>
+      <div class="product-info">
+        <p class="product-name">Cardigan Otoño</p>
+        <p class="product-artisan">Por Silvia R. · Colonia</p>
+        <p class="product-price">$3.100 UYU</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="nosotros">
+  <div class="about-layout">
+    <div class="about-image-side">
+      <svg viewBox="0 0 280 320" width="280" height="320" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="280" height="320" fill="#F5F0E8"/>
+        <rect x="20" y="20" width="240" height="280" fill="none" stroke="#C4956A" stroke-width="1" opacity="0.4"/>
+        <circle cx="140" cy="130" r="65" fill="#C4956A" opacity="0.2"/>
+        <circle cx="140" cy="130" r="50" fill="#A85C3C" opacity="0.15"/>
+        <path d="M90 130 Q140 90 190 130" stroke="#3D2B1F" stroke-width="2" fill="none" opacity="0.3"/>
+        <path d="M85 145 Q140 175 195 145" stroke="#7A8C6E" stroke-width="2" fill="none" opacity="0.4"/>
+        <path d="M80 160 Q140 205 200 160" stroke="#A85C3C" stroke-width="2" fill="none" opacity="0.4"/>
+        <text x="140" y="240" text-anchor="middle" font-family="Playfair Display, serif" font-size="15" fill="#3D2B1F" opacity="0.6" font-style="italic">artesanía con historia</text>
+        <text x="140" y="262" text-anchor="middle" font-family="Lato, sans-serif" font-size="10" fill="#3D2B1F" opacity="0.35" letter-spacing="3">URUGUAY</text>
+      </svg>
+    </div>
+    <div class="about-text-side">
+      <p class="section-label">Quiénes somos</p>
+      <h2 class="section-title" style="margin-bottom: 2rem;">Manos que<br>cuentan historias</h2>
+      <p>LanaUY nació del deseo de unir a las tejedoras artesanas del interior del Uruguay con personas que valoran lo hecho a mano, lo auténtico y lo duradero.</p>
+      <p>Cada prenda que ofrecemos viene con la historia de quien la tejió: su departamento, su técnica, y el amor con el que eligió cada color de lana merino uruguaya.</p>
+      <p>No somos una fábrica. Somos un puente entre el campo y tu hogar, entre tradición y diseño contemporáneo, entre la artesana y vos.</p>
+      <button class="btn-primary" onclick="showSection('contacto', document.querySelector('nav ul li:nth-child(4) a'))" style="margin-top:1rem">Ponerse en contacto</button>
+    </div>
+  </div>
+
+  <div style="text-align:center; padding: 3rem 2rem 1rem;">
+    <p class="section-label">Las artesanas</p>
+    <h2 class="section-title">Conocé a las tejedoras</h2>
+  </div>
+  <div class="artisan-grid">
+    <div class="artisan-card">
+      <div class="artisan-avatar">M</div>
+      <p class="artisan-name">María Estévez</p>
+      <p class="artisan-region">Tacuarembó · 20 años tejiendo</p>
+    </div>
+    <div class="artisan-card">
+      <div class="artisan-avatar" style="background:#7A8C6E">R</div>
+      <p class="artisan-name">Rosa Larrañaga</p>
+      <p class="artisan-region">Rivera · especialista en ponchos</p>
+    </div>
+    <div class="artisan-card">
+      <div class="artisan-avatar" style="background:#3D2B1F">C</div>
+      <p class="artisan-name">Carmen Vidal</p>
+      <p class="artisan-region">Paysandú · bufandas y accesorios</p>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="contact-layout">
+    <div class="contact-info">
+      <p class="section-label">Escribinos</p>
+      <h2 class="section-title">Hablemos</h2>
+      <div class="contact-detail">
+        <i class="ti ti-map-pin" aria-hidden="true"></i>
+        <div>
+          <p>Ubicación</p>
+          <p>Montevideo, Uruguay</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <i class="ti ti-mail" aria-hidden="true"></i>
+        <div>
+          <p>Email</p>
+          <p>hola@lanauy.uy</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <i class="ti ti-brand-whatsapp" aria-hidden="true"></i>
+        <div>
+          <p>WhatsApp</p>
+          <p>+598 99 000 000</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <i class="ti ti-clock" aria-hidden="true"></i>
+        <div>
+          <p>Atención</p>
+          <p>Lunes a viernes · 9:00 – 18:00</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div style="margin-bottom: 2rem;">
+        <p class="section-label">Formulario de contacto</p>
+        <h2 class="section-title" style="font-size:1.6rem">¿Querés un pedido especial?</h2>
+      </div>
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" placeholder="Tu nombre">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="tu@correo.com">
+      </div>
+      <div class="form-group">
+        <label>Me interesa</label>
+        <select>
+          <option>Hacer un pedido</option>
+          <option>Consulta sobre una prenda</option>
+          <option>Encargo personalizado</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensaje</label>
+        <textarea placeholder="Contanos qué necesitás..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%">Enviar mensaje</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>LanaUY</span> · Tejido artesanal uruguayo · Hecho con amor desde Uruguay 🇺🇾</p>
+</footer>
+
+<script>
+function showSection(id, linkEl) {
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
+  if (linkEl) linkEl.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
