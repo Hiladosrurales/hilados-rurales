@@ -1,0 +1,2087 @@
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap');
+  @import url('https://fonts.cdnfonts.com/css/glacial-indifference');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #F5F0E8;
+    --warm: #C4956A;
+    --deep: #3D2B1F;
+    --rust: #A85C3C;
+    --sage: #7A8C6E;
+    --offwhite: #FAF7F2;
+    --border: rgba(61,43,31,0.12);
+  }
+
+  body { font-family: 'Glacial Indifference', sans-serif; background: var(--offwhite); color: var(--deep); }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--offwhite);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+  }
+
+  .logo img{
+    height: 100px;
+    width: auto;
+    display: block;
+}
+
+  .logo span { color: var(--rust); font-style: normal; }
+
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul li a {
+    text-decoration: none; font-size: 0.85rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--deep); font-weight: 400;
+    transition: color 0.2s;
+  }
+  nav ul li a:hover, nav ul li a.active { color: var(--rust); }
+
+  section { display: none; }
+  section.active { display: block; }
+
+  /* HERO */
+  .hero {
+    min-height: 88vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .hero-text { padding: 4rem 3rem 4rem 4rem; }
+
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--rust);
+    margin-bottom: 1.25rem; font-weight: 700;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    line-height: 1.2; color: var(--deep);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title em { color: var(--rust); font-style: italic; }
+
+  .hero-desc {
+    font-size: 1rem; line-height: 1.8;
+    color: rgba(61,43,31,0.7);
+    max-width: 420px; margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .btn-primary {
+    background: var(--deep); color: var(--offwhite);
+    border: none; padding: 0.9rem 2.5rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.82rem; letter-spacing: 0.15em;
+    text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--rust); }
+
+  .btn-outline {
+    background: transparent; color: var(--deep);
+    border: 1px solid var(--deep); padding: 0.9rem 2.5rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.82rem; letter-spacing: 0.15em;
+    text-transform: uppercase; cursor: pointer;
+    margin-left: 1rem; transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--deep); color: var(--offwhite); }
+
+  .hero-image {
+    background: var(--sage);
+    min-height: 88vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-textile {
+    width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .weave-pattern {
+    width: 340px; height: 420px;
+    position: relative;
+  }
+
+  .hero-image img {
+  width: 60%;
+  max-width: 420px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+  /* FEATURES */
+  .features {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--border);
+  }
+
+  .feature {
+    padding: 3rem 2.5rem;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .feature:last-child { border-right: none; }
+
+  .feature-icon {
+    width: 48px; height: 48px; margin: 0 auto 1.25rem;
+    background: var(--cream); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--rust); font-size: 1.3rem;
+  }
+
+  .feature h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--deep);
+  }
+
+  .feature p { font-size: 0.88rem; color: rgba(61,43,31,0.65); line-height: 1.7; }
+
+  /* CATALOG */
+  .catalog-header {
+    text-align: center; padding: 4rem 2rem 2.5rem;
+  }
+
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--rust);
+    margin-bottom: 0.75rem; font-weight: 700;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; color: var(--deep);
+  }
+
+  .catalog-filters {
+    display: flex; gap: 0.75rem;
+    justify-content: center; padding: 1rem 2rem 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: transparent; border: 1px solid var(--border);
+    padding: 0.5rem 1.5rem; font-family: 'Lato', sans-serif;
+    font-size: 0.78rem; letter-spacing: 0.1em;
+    text-transform: uppercase; cursor: pointer;
+    color: var(--deep); transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--deep); color: var(--offwhite); border-color: var(--deep);
+  }
+
+  .product-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; padding: 0 2rem 4rem;
+  }
+
+  .product-card { background: var(--cream); position: relative; cursor: pointer; overflow: hidden; }
+
+  .product-img {
+    width: 100%; aspect-ratio: 3/4;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  .product-tag {
+    position: absolute; top: 1rem; left: 1rem;
+    background: var(--rust); color: white;
+    font-size: 0.7rem; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.3rem 0.75rem;
+  }
+
+  .product-info { padding: 1.25rem 1.5rem 1.5rem; background: var(--offwhite); }
+
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--deep); margin-bottom: 0.3rem;
+  }
+
+  .product-artisan { font-size: 0.78rem; color: var(--sage); margin-bottom: 0.5rem; }
+
+  .product-price { font-size: 0.9rem; color: var(--rust); font-weight: 700; }
+
+  /* ABOUT */
+  .about-layout {
+    display: grid; grid-template-columns: 1fr 1fr; min-height: 60vh;
+  }
+
+  .about-image-side {
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    padding: 4rem;
+  }
+
+  .about-text-side { padding: 5rem 4rem; }
+
+  .about-text-side p {
+    font-size: 0.95rem; line-height: 1.9;
+    color: rgba(61,43,31,0.75); margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+
+  .artisan-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; padding: 3rem 3rem 5rem;
+  }
+
+  .artisan-card {
+    text-align: center; padding: 2rem 1.5rem;
+    border: 1px solid var(--border);
+  }
+
+  .artisan-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    margin: 0 auto 1rem; display: flex; align-items: center;
+    justify-content: center; font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: var(--offwhite); background: var(--warm);
+  }
+
+  .artisan-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--deep); margin-bottom: 0.25rem;
+  }
+  .artisan-region { font-size: 0.8rem; color: var(--sage); }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column; gap: 5px;
+    cursor: pointer; background: none; border: none; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--deep); transition: all 0.3s;
+  }
+  .nav-menu { display: flex; }
+
+@media (max-width: 768px) {
+
+  nav { padding: 1rem 1.5rem; position: relative; }
+
+  .hamburger { display: flex; }
+
+  .nav-menu {
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--offwhite);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    padding: 0.5rem 0;
+    z-index: 200;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .nav-menu.open { display: flex; }
+
+  nav ul { flex-direction: column; gap: 0; }
+  nav ul li a {
+    display: block; padding: 0.85rem 2rem;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero { grid-template-columns: 1fr; }
+  .hero-image { min-height: 50vw; }
+  .hero-text { padding: 2rem 1.5rem; }
+  .btn-outline { margin-left: 0; margin-top: 0.75rem; display: block; text-align: center; }
+  .btn-primary, .btn-outline { width: 100%; }
+
+  .features { grid-template-columns: 1fr; }
+  .feature { border-right: none; border-bottom: 1px solid var(--border); }
+
+  .product-grid { grid-template-columns: repeat(2, 1fr); padding: 0 0.75rem 3rem; }
+
+  .about-layout { grid-template-columns: 1fr; }
+  .about-image-side { display: none; }
+  .about-text-side { padding: 2.5rem 1.5rem; }
+
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-info { padding: 2.5rem 1.5rem; }
+  .contact-form { padding: 2rem 1.5rem; }
+
+  .artisan-grid { grid-template-columns: 1fr; }
+
+  .catalog-header { padding: 2rem 1rem 1rem; }
+  .section-title { font-size: 1.6rem; }
+
+}
+
+  /* CONTACT */
+  .contact-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contact-photo-side {
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+  .contact-layout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    min-height: 70vh;
+  }
+
+  .contact-info {
+    background: var(--deep); color: var(--offwhite);
+    padding: 5rem 4rem;
+  }
+
+  .contact-info .section-label { color: var(--warm); }
+  .contact-info .section-title { color: var(--offwhite); margin-bottom: 2rem; }
+
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .contact-detail i { color: var(--warm); font-size: 1.1rem; margin-top: 2px; }
+
+  .contact-detail div p:first-child {
+    font-size: 0.75rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(250,247,242,0.5);
+    margin-bottom: 0.2rem;
+  }
+
+  .contact-detail div p:last-child { font-size: 0.95rem; color: var(--offwhite); }
+
+  .contact-form { padding: 5rem 4rem; }
+
+  .form-group { margin-bottom: 1.5rem; }
+
+  .form-group label {
+    display: block; font-size: 0.75rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--deep); margin-bottom: 0.5rem; font-weight: 700;
+  }
+
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; background: var(--cream);
+    border: 1px solid var(--border); padding: 0.85rem 1rem;
+    font-family: 'Lato', sans-serif; font-size: 0.9rem;
+    color: var(--deep); outline: none; transition: border-color 0.2s;
+    border-radius: 0;
+  }
+
+  .form-group input:focus, .form-group textarea:focus {
+    border-color: var(--rust);
+  }
+
+  .form-group textarea { height: 120px; resize: vertical; }
+
+  footer {
+    background: var(--deep); color: rgba(250,247,242,0.5);
+    text-align: center; padding: 2rem;
+    font-size: 0.8rem; letter-spacing: 0.05em;
+    border-top: 1px solid rgba(250,247,242,0.1);
+  }
+
+  footer span { color: var(--warm); }
+
+  /* CARRITO */
+  .add-to-cart-btn {
+    margin-top: 0.75rem; width: 100%;
+    background: var(--deep); color: var(--offwhite);
+    border: none; padding: 0.65rem;
+    font-family: 'Lato', sans-serif; font-size: 0.74rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .add-to-cart-btn:hover { background: var(--rust); }
+  .add-to-cart-btn.added { background: var(--sage); }
+
+  .cart-float-btn {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 300;
+    background: var(--deep); color: var(--offwhite);
+    width: 58px; height: 58px; border-radius: 50%; border: none;
+    cursor: pointer; font-size: 1.4rem;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+  .cart-float-btn:hover { background: var(--rust); }
+
+  .cart-badge {
+    position: absolute; top: -4px; right: -4px;
+    background: var(--rust); color: #fff;
+    font-size: 0.7rem; font-weight: 700;
+    min-width: 20px; height: 20px; border-radius: 50%;
+    display: none; align-items: center; justify-content: center;
+    padding: 0 4px; border: 2px solid var(--offwhite);
+  }
+
+  .cart-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(61,43,31,0.5); z-index: 400;
+    align-items: flex-end; justify-content: flex-end;
+  }
+  .cart-overlay.open { display: flex; }
+
+  .cart-panel {
+    background: var(--offwhite); width: 100%; max-width: 420px; height: 100%;
+    display: flex; flex-direction: column;
+    box-shadow: -8px 0 24px rgba(0,0,0,0.15);
+  }
+
+  .cart-header {
+    padding: 1.5rem; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cart-header h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--deep); }
+  .cart-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--deep); line-height: 1; }
+
+  .cart-items { flex: 1; overflow-y: auto; padding: 0.5rem 1.5rem; }
+
+  .cart-item {
+    padding: 1rem 0; border-bottom: 1px solid var(--border);
+  }
+  .cart-item p { font-size: 0.8rem; color: rgba(61,43,31,0.65); margin: 0; }
+  .cart-item p.cart-item-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--deep); margin-bottom: 0.15rem; }
+
+  .cart-item-qty { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.5rem; }
+  .cart-item-qty button {
+    width: 24px; height: 24px; border: 1px solid var(--border); background: none;
+    cursor: pointer; font-size: 0.9rem; color: var(--deep);
+  }
+  .cart-item-qty span { font-size: 0.85rem; min-width: 1rem; text-align: center; }
+
+  .cart-remove {
+    background: none; border: none; color: var(--rust);
+    font-size: 0.74rem; cursor: pointer; text-decoration: underline;
+    margin-top: 0.5rem; padding: 0;
+  }
+
+  .cart-empty { text-align: center; color: rgba(61,43,31,0.5); padding: 3rem 1rem; font-size: 0.9rem; line-height: 1.7; }
+
+  .cart-footer { padding: 1.25rem 1.5rem 1.5rem; border-top: 1px solid var(--border); }
+  .cart-footer p { font-size: 0.8rem; color: rgba(61,43,31,0.65); margin-bottom: 1rem; line-height: 1.6; }
+
+  .cart-whatsapp-btn {
+    width: 100%; background: #25D366; color: #fff; border: none;
+    padding: 0.9rem; font-family: 'Lato', sans-serif; font-size: 0.82rem;
+    letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    transition: background 0.2s;
+  }
+  .cart-whatsapp-btn:hover { background: #1ebe5b; }
+
+  .cart-clear-btn {
+    width: 100%; background: none; border: 1px solid var(--border); color: var(--deep);
+    padding: 0.6rem; font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; margin-top: 0.6rem;
+  }
+
+  @media (max-width: 768px) {
+    .cart-panel { max-width: 100%; }
+    .cart-float-btn { bottom: 1rem; right: 1rem; }
+  }
+</style>
+
+<nav>
+  <div class="logo">
+    <img src="imageshilados/logohilados.png" alt="Hilados Rurales">
+</div>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-menu" id="navMenu">
+    <ul>
+      <li><a href="#" class="active" onclick="showSection('inicio', this)">Inicio</a></li>
+      <li><a href="#" onclick="showSection('catalogo', this)">Catálogo</a></li>
+      <li><a href="#" onclick="showSection('talles', this)">Guía de talles</a></li>
+      <li><a href="#" onclick="showSection('nosotros', this)">Nosotros</a></li>
+      <li><a href="#" onclick="showSection('contacto', this)">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="inicio" class="active">
+  <div class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Hecho a mano · Uruguay</p>
+      <h1 class="hero-title">Lana Merino<br>del <em> campo uruguayo</em></h1>
+      <p class="hero-desc">Cada pieza es creada a mano por tejedoras artesanas de todo el Uruguay. Lana 100% natural.</p>
+      <button class="btn-primary" onclick="showSection('catalogo', document.querySelector('nav ul li:nth-child(2) a'))">Ver catálogo</button>
+      <button class="btn-outline" onclick="showSection('nosotros', document.querySelector('nav ul li:nth-child(4) a'))">Nuestra historia</button>
+    </div>
+
+    <div class="hero-image">
+      <div class="hero-textile">
+        <img src="imageshilados/lana.png" alt="Hilados artesanales">
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">🧶</div>
+      <h3>100% artesanal</h3>
+      <p>Cada prenda es tejida a mano, pieza única, sin producción en serie.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🐑</div>
+      <h3>Lana natural</h3>
+      <p>Usamos lana uruguaya de oveja merino, suave y de máxima calidad.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🪡</div> 
+      <h3>Tejedoras locales</h3>
+      <p>Apoyamos a artesanas de todo el Uruguay, valorizando su trabajo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="catalogo">
+  <div class="catalog-header">
+    <p class="section-label">Colección 2026</p>
+    <h2 class="section-title">Nuestras prendas</h2>
+  </div>
+
+  <div class="catalog-filters">
+    <button class="filter-btn active">Todo</button>
+    <button class="filter-btn">Sacos</button>
+    <button class="filter-btn">Buzos</button>
+    <button class="filter-btn">Ruanas</button>
+    <button class="filter-btn">Chales</button>
+    <button class="filter-btn">Camperas</button>
+    <button class="filter-btn">Hombre</button>
+   <button class="filter-btn">Lana</button>
+   <button class="filter-btn">Cuero</button>
+  </div>
+
+  <div class="product-grid">
+
+    <div class="product-card" data-category="sacos">
+  <div class="product-img" style="background: #CBB8A0;">
+    
+    <img src="imageshilados/Sacoescociabeige.jpeg" alt="Saco escocia" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+    
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Saco Escocia</p>
+    <p class="product-artisan">Beige</p>
+    <p class="product-price">$5.500 UYU</p>
+
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.900 UYU
+    </p>
+  </div>
+</div>
+
+<div class="product-card" data-category="sacos">
+  <div class="product-img" style="background: #CBB8A0;">
+    
+    <img src="imageshilados/sacoEscociarosaviejo.jpeg" alt="Saco escocia" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+    
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Saco Escocia</p>
+    <p class="product-artisan">Rosa Viejo</p>
+    <p class="product-price">$5.500 UYU</p>
+
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.900 UYU
+    </p>
+  </div>
+</div>
+
+<div class="product-card" data-category="sacos">
+  <div class="product-img" style="background: #CBB8A0;">
+    
+    <img src="imageshilados/sacoescociaverde.jpeg" alt="Saco escocia" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+    
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Saco Escocia</p>
+    <p class="product-artisan">Verde</p>
+    <p class="product-price">$5.500 UYU</p>
+
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.900 UYU
+    </p>
+  </div>
+</div>
+
+<div class="product-card" data-category="buzos">
+  <div class="product-img" style="background: #D8DCCF;">
+    
+    <img src="imageshilados/buzosnowflakeverde.jpeg" alt="Buzo Snowflake" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Snowflake</p>
+    <p class="product-artisan">Verde</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+  </div>
+
+</div>
+
+    <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #D8DCCF;">
+    
+    <img src="imageshilados/buzosnowflakebordo.jpeg" alt="Buzo Snowflake" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Snowflake</p>
+    <p class="product-artisan">Bordeaux con gris</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+  </div>
+
+  </div>
+
+    <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #D8DCCF;">
+    
+    <img src="imageshilados/buzosnowflakerojo.jpeg" alt="Buzo Snowflake" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Snowflake</p>
+    <p class="product-artisan">Bordeaux con camel</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+  </div>
+
+</div>
+
+    <div class="product-card" data-category="buzos">
+  <div class="product-img" style="background: #D8DCCF;">
+    <img src="imageshilados/buzosnowflakenegro.jpeg" alt="Buzo Snowflake" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+  <div class="product-info">
+    <p class="product-name">Buzo Snowflake</p>
+    <p class="product-artisan">Negro</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+  </div>
+</div>
+
+    <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #b3bba1;">
+    
+    <img src="imageshilados/buzonordiconarnja.jpeg" alt="Buzo Snowflake" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Nórdico</p>
+    <p class="product-artisan">Terracota</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+  </div>
+
+  </div>
+
+    <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #b3bba1;">
+    
+    <img src="imageshilados/buzonordicogris.jpeg" alt="Buzo Snowflake" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Nórdico</p>
+    <p class="product-artisan">Gris</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+    </div>
+</div>
+
+    <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #b3bba1;">
+    
+    <img src="imageshilados/buzonordicogrisoscuro.jpeg" alt="Buzo Snowflake" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Nórdico</p>
+    <p class="product-artisan">Gris Oscuro</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+    </div>
+    </div>
+
+    <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #b3bba1;">
+    
+    <img src="imageshilados/buzonoedicorojo2.jpeg" alt="Buzo Snowflake" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Nórdico</p>
+    <p class="product-artisan">Rojo</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+    </div>
+  </div>
+
+      <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #ba9661;">
+    
+    <img src="imageshilados/buzobarilochecamel.jpeg" alt="Buzo Bariloche" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Bariloche</p>
+    <p class="product-artisan">Camel</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+    </div>
+  </div>
+
+  
+      <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #ba9661;">
+    
+    <img src="imageshilados/barilocheverdeseda.jpeg" alt="Buzo Bariloche" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Bariloche</p>
+    <p class="product-artisan">Verde Seda</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #ba9661;">
+    
+    <img src="imageshilados/barilocheverdemusgo.jpeg" alt="Buzo Bariloche" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Bariloche</p>
+    <p class="product-artisan">Verde Musgo</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #ba9661;">
+    
+    <img src="imageshilados/barilocheverdemusgo2.jpeg" alt="Buzo Bariloche" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Bariloche</p>
+    <p class="product-artisan">Verde Musgo</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+    </div>
+  </div>
+  
+      <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #ba9661;">
+    
+    <img src="imageshilados/buzobarilochechocolate.jpeg" alt="Buzo Bariloche" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Bariloche</p>
+    <p class="product-artisan">Chocolate</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+    </div>
+  </div>
+<div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #ba9661;">
+    
+    <img src="imageshilados/buzobarilocheazul.jpeg" alt="Buzo Bariloche" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Bariloche</p>
+    <p class="product-artisan">Azul</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #ba9661;">
+    
+    <img src="imageshilados/buzobarilochenegro.jpeg" alt="Buzo Bariloche" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Bariloche</p>
+    <p class="product-artisan">Negro</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.500 UYU
+    </p>
+    </div>
+  </div>
+
+<div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #b5b8b6;">
+    
+    <img src="imageshilados/buzociervoterracota.jpeg" alt="Buzo Ciervo" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Ciervo</p>
+    <p class="product-artisan">Terracota</p>
+    <p class="product-price">$5.300 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.800 UYU
+    </p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #b5b8b6;">
+    
+    <img src="imageshilados/buzociervoverde.jpeg" alt="Buzo Ciervo" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Ciervo</p>
+    <p class="product-artisan">Verde</p>
+    <p class="product-price">$5.300 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.800 UYU
+    </p>
+    </div>
+  </div>
+
+<div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #b5b8b6;">
+    
+    <img src="imageshilados/Dinamarcaazulconbordeauxoscuro.jpeg" alt="Buzo Dinamarca" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Dinamarca</p>
+    <p class="product-artisan">Azul y Bordeaux oscuro</p>
+    <p class="product-price">$5.200 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.800 UYU
+    </p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #b5b8b6;">
+    
+    <img src="imageshilados/DinamarcaRojochocolate.jpeg" alt="Buzo Dinamarca" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Dinamarca</p>
+    <p class="product-artisan">Rojo y Chocolate</p>
+    <p class="product-price">$5.200 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.800 UYU
+    </p>
+    </div>
+  </div>
+
+
+  <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #b5b8b6;">
+    
+    <img src="imageshilados/dinamarcaazulbordeauxclaro.jpeg" alt="Buzo Dinamarca" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Dinamarca</p>
+    <p class="product-artisan">Azul y Bordeaux Claro</p>
+    <p class="product-price">$5.200 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.800 UYU
+    </p>
+    </div>
+  </div>
+  
+  <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #d5af81;">
+    
+    <img src="imageshilados/patchworkcrochet1.jpeg" alt="Buzo Patchwork" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Patchwork Crochet</p>
+    <p class="product-artisan">Beige</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.700 UYU
+    </p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #d5af81;">
+    
+    <img src="imageshilados/buzocrochetazul.jpeg" alt="Buzo Crochet" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Crochet</p>
+    <p class="product-artisan">Azul</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.700 UYU
+    </p>
+    </div>
+  </div>
+
+   <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #d5af81;">
+    
+    <img src="imageshilados/buzocrochetrojo.jpeg" alt="Buzo Crochet" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Crochet</p>
+    <p class="product-artisan">Rojo</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.700 UYU
+    </p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #d5af81;">
+    
+    <img src="imageshilados/buzocrochetpastel.jpeg" alt="Buzo Crochet" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Crochet</p>
+    <p class="product-artisan">Pastel</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.700 UYU
+    </p>
+    </div>
+  </div>
+  
+  <div class="product-card" data-category="buzos">
+      <div class="product-img" style="background: #d5af81;">
+    
+    <img src="imageshilados/patchworkcrochet2.jpeg" alt="Buzo Patchwork" style="
+      width: 75%;
+      height: auto;
+      object-fit: contain;
+    ">
+  </div>
+
+  <div class="product-info">
+    <p class="product-name">Buzo Patchwork Crochet</p>
+    <p class="product-artisan">Azul y Verde</p>
+    <p class="product-price">$5.000 UYU</p>
+    <p style="font-size:0.8rem; color:#7A8C6E; margin-top:0.4rem;">
+      Transferencia: $4.700 UYU
+    </p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="ruanas" onclick="openGallery('rueca')">
+    <div class="product-img" style="background: #C8B89A; cursor:pointer; position:relative;">
+      <img src="imageshilados/ruanaruecacruda.jpeg" alt="Ruana Hilada en Rueca" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER MODELOS →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Ruana Hilada en Rueca</p>
+      <p class="product-artisan">Varios colores disponibles</p>
+      <p class="product-price">$5.500 UYU</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Transferencia: $5.000 UYU</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="ruanas" onclick="openGallery('troya')">
+    <div class="product-img" style="background: #B8A898; cursor:pointer; position:relative;">
+      <img src="imageshilados/RuanaTroya1.jpeg" alt="Ruana Troya" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER MODELOS →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Ruana Troya</p>
+      <p class="product-artisan">Varios colores disponibles</p>
+      <p class="product-price">$6.000 UYU</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Transferencia: $5.400 UYU</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="ruanas" onclick="openGallery('troya bordada')">
+    <div class="product-img" style="background: #B8A898; cursor:pointer; position:relative;">
+      <img src="imageshilados/ruanatroyabordadacruda.jpeg" alt="Ruana Troya Bordada" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER MODELOS →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Ruana Troya Bordada</p>
+      <p class="product-artisan">Varios colores disponibles</p>
+      <p class="product-price">$6.500 UYU</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Transferencia: $5.800 UYU</p>
+    </div>
+  </div>
+
+
+  <div class="product-card" data-category="ruanas" onclick="openGallery('merino')">
+    <div class="product-img" style="background: #C4BAA8; cursor:pointer; position:relative;">
+      <img src="imageshilados/ruanamerinocruda.jpeg" alt="Ruana Merino" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER MODELOS →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Ruana Merino</p>
+      <p class="product-artisan">Varios colores disponibles</p>
+      <p class="product-price">$4.800 UYU</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Transferencia: $4.500 UYU</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="ruanas" onclick="openGallery('triangular')">
+    <div class="product-img" style="background: #B4C0AC; cursor:pointer; position:relative;">
+      <img src="imageshilados/ruanatriangularcruda.jpeg" alt="Ruana Triangular" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER MODELOS →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Ruana Triangular</p>
+      <p class="product-artisan">Varios colores disponibles</p>
+      <p class="product-price">$5.000 UYU</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Transferencia: $4.500 UYU</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="chales" onclick="openGallery('chalmerino')">
+    <div class="product-img" style="background: #C8C0B0; cursor:pointer; position:relative;">
+      <img src="imageshilados/chalmerinorosaviejo.jpeg" alt="Chal Merino" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER MODELOS →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Chal Merino</p>
+      <p class="product-artisan">Varios colores disponibles</p>
+      <p class="product-price">$4.500 UYU</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Transferencia: $4.000 UYU</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="chales" onclick="openGallery('chalbordado')">
+    <div class="product-img" style="background: #B8C4B0; cursor:pointer; position:relative;">
+      <img src="imageshilados/chalbordado.jpeg" alt="Chal Bordado" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER MODELOS →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Chal Bordado</p>
+      <p class="product-artisan">Varios colores disponibles</p>
+      <p class="product-price">$5.000 UYU</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Transferencia: $3.500 UYU</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="camperas" onclick="openGallery('camperaPampeana')">
+    <div class="product-img" style="background: #C2A882; cursor:pointer; position:relative;">
+      <img src="imageshilados/camperapampeana.jpeg" alt="Campera Pampeana" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER MODELOS →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Campera Pampeana</p>
+      <p class="product-artisan">Varios colores disponibles en lana Corriedale</p>
+      <p class="product-price">$5.000 UYU</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Transferencia: $4.500 UYU</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="camperas" onclick="openGallery('camperaRíoGrande')">
+    <div class="product-img" style="background: #b1cdbd; cursor:pointer; position:relative;">
+      <img src="imageshilados/camperariograndebordo.jpeg" alt="Campera Río Grande" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER MODELOS →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Campera Río Grande</p>
+      <p class="product-artisan">Varios colores disponibles</p>
+      <p class="product-price">$6.100 UYU</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Transferencia: $5.500 UYU</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="hombre" onclick="openGallery('BuzoMerino')">
+    <div class="product-img" style="background: #C2A882; cursor:pointer; position:relative;">
+      <img src="imageshilados/buzomerinogris.jpeg" alt="Buzo Merino" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER MODELOS →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Buzo Merino</p>
+      <p class="product-artisan">Varios colores disponibles</p>
+      <p class="product-price">$5.000 UYU</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Transferencia: $4.500 UYU</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="lana" onclick="openGallery('lanacruda')">
+    <div class="product-img" style="background: #C8C0B0; cursor:pointer; position:relative;">
+      <img src="imageshilados/lanacruda.jpeg" alt="Lana Merino sin teñir" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER COLORES →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Lana Merino sin teñir: diferentes grosores</p>
+      <p class="product-artisan">Madejas de 250 g de 21 micras</p>
+      <p class="product-price">$1600/kg</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Mercado Pago: $1800/kg</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="lana" onclick="openGallery('lanacorriedale')">
+    <div class="product-img" style="background: #b6b5b2; cursor:pointer; position:relative;">
+      <img src="imageshilados/corriedale1.jpeg" alt="Lana Corriedale sin teñir" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER COLORES →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Lana Corriedale sin teñir</p>
+      <p class="product-artisan">Conos de 3kg de 24 micras</p>
+      <p class="product-price">$1800/kg</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Mercado Pago: $2000/kg</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="lana" onclick="openGallery('lanatenidamedio')">
+    <div class="product-img" style="background: #B8C4B0; cursor:pointer; position:relative;">
+      <img src="imageshilados/verdepetroleo.jpeg" alt="Lana Merino Teñida Grosor Medio" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER COLORES →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Lana Merino Teñida Grosor Medio</p>
+      <p class="product-artisan">Madejas de 250 g de 21 micras</p>
+      <p class="product-price">$2300/kg</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Llevando más de 3 kg $2000/kg</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="lana" onclick="openGallery('lanatenidagruesa')">
+    <div class="product-img" style="background: #c4c2b0; cursor:pointer; position:relative;">
+      <img src="imageshilados/chocolategrueso.jpeg" alt="Lana Merino Teñida Grosor Grueso" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER COLORES →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Lana Merino Teñida Grosor Grueso</p>
+      <p class="product-artisan">Madejas de 250 g de 21 micras</p>
+      <p class="product-price">$2300/kg</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Llevando más de 3 kg $2000/kg</p>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="cuero" onclick="openGallery('carteraaracy')">
+    <div class="product-img" style="background: #C2A882; cursor:pointer; position:relative;">
+      <img src="imageshilados/aracyceleste.jpeg" alt="Cartera Aracy" style="width:75%;height:auto;object-fit:contain;">
+      <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER MODELOS →</div>
+    </div>
+    <div class="product-info">
+      <p class="product-name">Cartera Aracy</p>
+      <p class="product-artisan">Varios colores disponibles</p>
+      <p class="product-price">$4.700 UYU</p>
+      <p style="font-size:0.8rem;color:#7A8C6E;margin-top:0.4rem;">Transferencia: $4.200 UYU</p>
+    </div>
+  </div>
+
+</div>
+</section>
+<div id="galleryModal" style="
+  display:none; position:fixed; inset:0; z-index:999;
+  background:rgba(0,0,0,0.85);
+  align-items:center; justify-content:center; flex-direction:column;
+">
+  <button onclick="closeGallery()" style="
+    position:absolute; top:1.5rem; right:1.5rem;
+    background:none; border:none; color:white;
+    font-size:2rem; cursor:pointer; line-height:1;
+  ">✕</button>
+
+  <p id="galleryTitle" style="
+    color:#FAF7F2; font-family:'Playfair Display',serif;
+    font-size:1.2rem; margin-bottom:1rem; letter-spacing:0.05em;
+  "></p>
+
+  <div style="display:flex; align-items:center; gap:1rem;">
+    <button onclick="prevPhoto()" style="
+      background:none; border:2px solid rgba(255,255,255,0.4);
+      color:white; font-size:1.8rem; width:48px; height:48px;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      border-radius:50%;
+    ">&#8249;</button>
+
+    <div>
+      <img id="galleryImg" src="" alt="" style="
+        max-height:65vh; max-width:70vw;
+        object-fit:contain; border-radius:4px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        display:block;
+      ">
+      <p id="galleryCaption" style="
+        color:rgba(255,255,255,0.8); text-align:center;
+        margin-top:0.75rem; font-size:0.85rem; letter-spacing:0.08em;
+        text-transform:uppercase;
+      "></p>
+      <p id="galleryCounter" style="
+        color:rgba(255,255,255,0.4); text-align:center;
+        font-size:0.75rem; margin-top:0.25rem;
+      "></p>
+    </div>
+
+    <button onclick="nextPhoto()" style="
+      background:none; border:2px solid rgba(255,255,255,0.4);
+      color:white; font-size:1.8rem; width:48px; height:48px;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      border-radius:50%;
+    ">&#8250;</button>
+  </div>
+
+  <div id="galleryThumbs" style="
+    display:flex; gap:0.5rem; margin-top:1.25rem;
+    flex-wrap:wrap; justify-content:center; max-width:80vw;
+  "></div>
+</div>
+
+<section id="talles">
+
+  <div class="catalog-header">
+    <p class="section-label">Información útil</p>
+    <h2 class="section-title">Guía de talles</h2>
+  </div>
+
+  <div style="
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
+    display: grid;
+    gap: 1.5rem;
+  ">
+
+    <!-- Buzo Snowflake -->
+    <div style="background: var(--cream); padding: 2rem; border:1px solid var(--border);">
+      <h3 style="font-family:'Playfair Display', serif; margin-bottom:1rem;">Buzo Snowflake</h3>
+      <p>S · 46 cm ancho · 52 cm largo</p>
+      <p>M · 49 cm ancho · 55 cm largo</p>
+      <p>L · 53 cm ancho · 59 cm largo</p>
+      <p>XL · 57 cm ancho · 62 cm largo</p>
+    </div>
+
+    <!-- Campera Pampeana -->
+    <div style="background: var(--cream); padding: 2rem; border:1px solid var(--border);">
+      <h3 style="font-family:'Playfair Display', serif; margin-bottom:1rem;">Campera Pampeana</h3>
+      <p>S · 50 cm ancho · 60 cm largo</p>
+      <p>M · 52 cm ancho · 63 cm largo</p>
+      <p>L · 55 cm ancho · 67 cm largo</p>
+      <p>XL · 58 cm ancho · 70 cm largo</p>
+      <p>XXL · 62 cm ancho · 75 cm largo</p>
+    </div>
+
+
+    <!-- Buzo Nórdico -->
+    <div style="background: var(--cream); padding: 2rem; border:1px solid var(--border);">
+      <h3 style="font-family:'Playfair Display', serif; margin-bottom:1rem;">Buzo Nórdico</h3>
+      <p>S · 46 cm ancho · 52 cm largo</p>
+      <p>M · 49 cm ancho · 55 cm largo</p>
+      <p>L · 53 cm ancho · 60 cm largo</p>
+      <p>XL · 57 cm ancho · 62 cm largo</p>
+    </div>
+
+    <!-- Buzo Dinamarca -->
+    <div style="background: var(--cream); padding: 2rem; border:1px solid var(--border);">
+      <h3 style="font-family:'Playfair Display', serif; margin-bottom:1rem;">Buzo Dinamarca</h3>
+      <p>S · 47 cm ancho · 55 cm largo</p>
+      <p>M · 50 cm ancho · 60 cm largo</p>
+      <p>L · 54 cm ancho · 63 cm largo</p>
+      <p>XL · 59 cm ancho · 65 cm largo</p>
+    </div>
+
+    <!-- Sacos -->
+    <div style="background: var(--cream); padding: 2rem; border:1px solid var(--border);">
+      <h3 style="font-family:'Playfair Display', serif; margin-bottom:1rem;">Sacos</h3>
+      <p>S · 52 cm ancho · 58 cm largo</p>
+      <p>M · 55 cm ancho · 60 cm largo</p>
+      <p>XL · 62 cm ancho · 65 cm largo</p>
+    </div>
+
+    <!-- Buzo Patchwork -->
+    <div style="background: var(--cream); padding: 2rem; border:1px solid var(--border);">
+      <h3 style="font-family:'Playfair Display', serif; margin-bottom:1rem;">Buzo Patchwork</h3>
+      <p>S · 49 cm ancho · 55 cm largo</p>
+      <p>M · 53 cm ancho · 60 cm largo</p>
+      <p>L · 57 cm ancho · 62 cm largo</p>
+    </div>
+
+    <!-- Ruana triangular -->
+    <div style="background: var(--cream); padding: 2rem; border:1px solid var(--border);">
+      <h3 style="font-family:'Playfair Display', serif; margin-bottom:1rem;">Ruana triangular</h3>
+      <p>Largo medio · 76 cm</p>
+      <p>Ancho base · 1,70 m</p>
+      <p>Largo flecos · 30 cm</p>
+    </div>
+
+    <!-- Ruanas -->
+    <div style="background: var(--cream); padding: 2rem; border:1px solid var(--border);">
+      <h3 style="font-family:'Playfair Display', serif; margin-bottom:1rem;">Ruanas</h3>
+      <p>90 cm × 1,50 m</p>
+      <p>Largo flecos · 20 cm</p>
+    </div>
+
+    <!-- Chal -->
+    <div style="background: var(--cream); padding: 2rem; border:1px solid var(--border);">
+      <h3 style="font-family:'Playfair Display', serif; margin-bottom:1rem;">Chal rectangular</h3>
+      <p>60 cm × 1,80 m</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="nosotros">
+  <div class="about-layout">
+    <div class="about-image-side">
+      <img src="imageshilados/fotocaballaoovejas.jpeg" alt="Foto representativa" width="580" height="720" style="object-fit: cover; border:1px solid #dad2a1;"/>
+    </div>
+    <div class="about-text-side">
+      <p class="section-label">Quiénes somos</p>
+      <h2 class="section-title" style="margin-bottom: 2rem;">Prendas <br>cuentan historias</h2>
+      <p>Hilados Rurales nació para unir a las tejedoras artesanales del interior del Uruguay con personas que valoran lo hecho a mano, lo auténtico y lo duradero.</p>
+      <p>Cada prenda que ofrecemos viene con la historia de quien la tejió: su departamento y su técnica.</p>
+      <p>Somos un puente entre el campo, la tradición y el diseño contemporáneo.</p>
+      <button class="btn-primary" onclick="showSection('contacto', document.querySelector('nav ul li:nth-child(4) a'))" style="margin-top:1rem">Ponerse en contacto</button>
+    </div>
+  </div>
+
+
+</section>
+
+<section id="contacto">
+  <div class="contact-layout">
+    <div class="contact-info">
+      <p class="section-label">Escribinos</p>
+      <h2 class="section-title">Contáctenos</h2>
+      <div class="contact-detail">
+        <i class="ti ti-map-pin" aria-hidden="true"></i>
+        <div>
+          <p>Ubicación</p>
+          <p>Las Brujas, Canelones, Uruguay</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <i class="ti ti-mail" aria-hidden="true"></i>
+        <div>
+          <p>Email</p>
+          <p>hilados.rurales@gmail.com</p>
+          <p>selvamuzio@gmail.com</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <i class="ti ti-brand-whatsapp" aria-hidden="true"></i>
+        <div>
+          <p>WhatsApp</p>
+          <p>+598 94 400 646</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div>
+          <p>Instagram</p>
+          <p>@hiladosrurales</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div style="margin-bottom: 2rem;">
+        <p class="section-label">Formulario de contacto</p>
+      </div>
+      <form action="https://formspree.io/f/xojbvobe" method="POST">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" name="nombre" placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="tu@correo.com">
+        </div>
+        <div class="form-group">
+          <label>Me interesa</label>
+          <select name="consulta">
+            <option>Hacer un pedido</option>
+            <option>Consulta sobre una prenda</option>
+            <option>Encargo personalizado</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensaje</label>
+          <textarea name="mensaje" placeholder="Contanos qué necesitás..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%">Enviar mensaje</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Hilados Rurales</span> · Tejido artesanal uruguayo · Hecho en Uruguay 🇺🇾</p>
+</footer>
+
+<button class="cart-float-btn" id="cartFloatBtn" onclick="openCart()" aria-label="Ver carrito">
+  🛒
+  <span class="cart-badge" id="cartBadge">0</span>
+</button>
+
+<div class="cart-overlay" id="cartOverlay" onclick="if(event.target===this) closeCart()">
+  <div class="cart-panel">
+    <div class="cart-header">
+      <h3>Tu selección</h3>
+      <button class="cart-close" onclick="closeCart()" aria-label="Cerrar">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <p>Esto no es una compra online. Al enviar el pedido por WhatsApp, coordinamos con vos talles, stock y forma de pago.</p>
+      <button class="cart-whatsapp-btn" onclick="sendCartWhatsApp()">Enviar pedido por WhatsApp</button>
+      <button class="cart-clear-btn" onclick="clearCart()">Vaciar carrito</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+function toggleMenu() {
+  document.getElementById('navMenu').classList.toggle('open');
+}
+
+function showSection(id, linkEl) {
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
+  if (linkEl) linkEl.classList.add('active');
+  document.getElementById('navMenu').classList.remove('open');
+  window.scrollTo(0, 0);
+}
+
+
+/* GALERÍA */
+const galerías = {
+  carteraaracy: {
+    titulo: 'Cartera Aracy',
+    fotos: [
+      { src: 'imageshilados/aracymarron.jpeg',    caption: 'Marrón Liso' },
+      { src: 'imageshilados/aracybeige.jpeg',     caption: 'Beige Crocco' },
+      { src: 'imageshilados/aracyceleste.jpeg',   caption: 'Azul Crocco' },
+      { src: 'imageshilados/aracy bordeaux.jpeg',  caption: 'Bordeaux Crocco' },
+    ]
+  },
+
+lanacruda:{
+    titulo:"Lana Merino - Sin teñir",
+
+    fotos:[
+        {
+            src:"imageshilados/lanacruda.jpeg",
+            caption:"Grosor medio (aguja Nº6)"
+        },
+        {
+            src:"imageshilados/lanacrudagruesa.jpeg",
+            caption:"Grosor grueso con torsión para telar"
+        }
+    ]
+},
+
+camperaRíoGrande: {
+    titulo: 'Campera Río Grande',
+    fotos: [
+      { src: 'imageshilados/camperariograndebordo.jpeg',  caption: 'Terracota' },
+      { src: 'imageshilados/camperariograndeceleste.jpeg',    caption: 'Celeste' },
+      { src: 'imageshilados/camperariograndenegra.jpeg',     caption: 'Negra' },
+      { src: 'imageshilados/camperariograndepampa.jpeg',   caption: 'Pampa' },
+      { src: 'imageshilados/camperariograndeterracota.jpeg',  caption: 'Terracota' },
+    ]
+  },
+
+  camperaPampeana: {
+    titulo: 'Campera Pampeana',
+    fotos: [
+      { src: 'imageshilados/camperapampeana.jpeg',  caption: 'Beige' },
+      { src: 'imageshilados/camperapampeanaterracota.jpeg',    caption: 'Terracota' },
+    ]
+  },
+
+  BuzoMerino: {
+    titulo: 'Buzo Merino',
+    fotos: [
+      { src: 'imageshilados/buzomerinogris.jpeg',  caption: 'Gris' },
+      { src: 'imageshilados/buzomerinoazul.jpeg',    caption: 'Azul' },
+    ]
+  },
+
+lanacorriedale:{
+    titulo:"Lana Corriedale - Sin teñir",
+
+    fotos:[
+        {
+            src:"imageshilados/corriedale1.jpeg",
+            caption:"Gruesa de 24 micras"
+        }
+    ]
+},
+
+lanatenidamedio:{
+    titulo:"Lana Merino - Teñida Media",
+
+    fotos:[
+        {
+            src:"imageshilados/verdepetroleo.jpeg",
+            caption:"Verde Petróleo"
+        },
+        {
+            src:"imageshilados/mantecafina.jpeg",
+            caption:"Manteca"
+        },
+        {
+            src:"imageshilados/camel.jpeg",
+            caption:"Camel"
+        },
+        {
+            src:"imageshilados/terracotaoscura.jpeg",
+            caption:"Terracota Oscura"
+        },
+        {
+            src:"imageshilados/terracotaclara.jpeg",
+            caption:"Terracota Claro"
+        },
+        {
+            src:"imageshilados/beigefino.jpeg",
+            caption:"Beige"
+        },
+        {
+            src:"imageshilados/amarillofina.jpeg",
+            caption:"Amarilla"
+        },
+        {
+            src:"imageshilados/verdelimon.jpeg",
+            caption:"Verde Limón"
+        },
+        {
+            src:"imageshilados/verdesedafino.jpeg",
+            caption:"Verde Seda"
+        },
+        {
+            src:"imageshilados/verdeolivafino.jpeg",
+            caption:"Verde Oliva"
+        },
+        {
+            src:"imageshilados/verdemusgofino.jpeg",
+            caption:"Verde Musgo"
+        },
+        {
+            src:"imageshilados/azulfino.jpeg",
+            caption:"Azul"
+        },
+        {
+            src:"imageshilados/celestefino.jpeg",
+            caption:"Celeste"
+        },
+        {
+            src:"imageshilados/grisoscurofino.jpeg",
+            caption:"Gris Oscuro"
+        },
+        {
+            src:"imageshilados/grisclarofino.jpeg",
+            caption:"Gris Claro"
+        },
+        {
+            src:"imageshilados/grismelangefino.jpeg",
+            caption:"Gris Melange"
+        },
+        {
+            src:"imageshilados/negrofino.jpeg",
+            caption:"Negro"
+        },
+        {
+            src:"imageshilados/bordeauxoscurofino.jpeg",
+            caption:"Bordeaux Oscuro"
+        },
+        {
+            src:"imageshilados/bordeauxclarofino.jpeg",
+            caption:"Bordeaux Claro"
+        },
+        {
+            src:"imageshilados/rosachanelfino.jpeg",
+            caption:"Rosa Chanel"
+        },
+        {
+            src:"imageshilados/rojofino.jpeg",
+            caption:"Rojo"
+        },
+    ]
+},
+
+ lanatenidagruesa: {
+    titulo: 'Lana Merino - Teñida Gruesa',
+    fotos: [
+      { src: "imageshilados/camelgrueso.jpeg",      caption: 'Camel' },
+      { src: "imageshilados/bordeauxclarogrueso.jpeg",  caption: 'Bordeaux Claro' },
+      { src: "imageshilados/chocolategrueso.jpeg",      caption: 'Chocolate' },
+      { src: "imageshilados/grisoscurogrueso.jpeg",      caption: 'Gris Oscuro' },
+      { src: "imageshilados/celestegrueso.jpeg",      caption: 'Celeste' },
+    ]
+  },
+
+  rueca: {
+    titulo: 'Ruana Hilada en Rueca',
+    fotos: [
+      { src: "imageshilados/ruanaruecacruda.jpeg",      caption: 'Cruda' },
+      { src: "imageshilados/ruanaruecabordeaux.jpeg",  caption: 'Bordeaux' },
+      { src: "imageshilados/ruanaruecachocolate.jpeg",      caption: 'Chocolate' },
+      { src: "imageshilados/ruanaruecacuadros.jpeg",      caption: 'Cuadros' },
+      { src: "imageshilados/ruanaruecafucsia.jpeg",      caption: 'Fucsia' },
+      { src: "imageshilados/ruanaruecanegra.jpeg",      caption: 'Negra' },
+    ]
+  },
+  troya: {
+    titulo: 'Ruana Troya',
+    fotos: [
+      { src: "imageshilados/ruanatroyagris.jpeg",   caption: 'Gris' },
+      { src: "imageshilados/ruanatroya1.jpeg",         caption: 'Cruda' },
+      { src: "imageshilados/ruanatroyaamarilla.jpeg",         caption: 'Amarilla' },
+      { src: "imageshilados/ruanatroyanegra.jpeg",         caption: 'Negra' },
+      { src: "imageshilados/ruanatroyaroja.jpeg",         caption: 'Roja' },
+      { src: "imageshilados/ruanatroyaceleste.jpeg",         caption: 'Celeste' },
+      { src: "imageshilados/ruanatroyabeige.jpeg",         caption: 'Beige' },
+      { src: "imageshilados/ruanatroyabordeaux.jpeg",         caption: 'Bordeaux' },
+      { src: "imageshilados/ruanatroyamarron.jpeg",         caption: 'Chocolate' },
+      { src: "imageshilados/ruanatroyaazul.jpeg",         caption: 'Azul' },
+    ]
+  },
+
+  'troya bordada': {
+    titulo: 'Ruana Troya Bordada',
+    fotos: [
+      { src: "imageshilados/ruanatroyabordadagris.jpeg",  caption: 'Gris' },
+      { src: "imageshilados/ruanatroyabordadacruda.jpeg",  caption: 'Cruda' },
+      { src: "imageshilados/ruanatroyabordadanegra.jpeg",  caption: 'Negra' },
+      { src: "imageshilados/ruanatroyabordadaceleste.jpeg",  caption: 'Celeste' },
+    ]
+    },
+
+  merino: {
+    titulo: 'Ruana Merino',
+    fotos: [
+      { src: "imageshilados/ruanamerinobordeaux.jpeg",  caption: 'Bordeaux' },
+      { src: "imageshilados/ruanamerinochocolate.jpeg",  caption: 'Chocolate' },
+      { src: "imageshilados/ruanamerinocruda.jpeg",  caption: 'Cruda' },
+      { src: "imageshilados/ruanaMerinoazul.jpeg",  caption: 'Azul' },
+    ]
+  },
+  chalmerino: {
+    titulo: 'Chal Merino',
+    fotos: [
+      { src: "imageshilados/chalmerinorosaviejo.jpeg", caption: 'Rosa Viejo' },
+      { src: "imageshilados/chalmerinonegro.jpeg", caption: 'Negro' },
+      { src: "imageshilados/chalmerinomostaza.jpeg", caption: 'Mostaza' },
+      { src: "imageshilados/chalmerinogris.jpeg", caption: 'Gris' },
+      { src: "imageshilados/Chalmerinocrudo.jpeg", caption: 'Crudo' },
+      { src: "imageshilados/Chalmerinochocolate.jpeg", caption: 'Chocolate' },
+      { src: "imageshilados/ChalMerinoazul.jpeg", caption: 'Azul' },
+      { src: "imageshilados/ChalMerinobordeaux.jpeg", caption: 'Azul' },
+    ]
+  },
+  chalbordado: {
+    titulo: 'Chal Bordado',
+    fotos: [
+      { src: 'imageshilados/chalbordado.jpeg', caption: 'Modelo 1' },
+    ]
+  },
+  triangular: {
+    titulo: 'Ruana Triangular',
+    fotos: [
+      { src: "imageshilados/ruanatriangularchocolate.jpeg",  caption: 'Chocolate' },
+      { src: "imageshilados/ruanatriangularazul.jpeg",  caption: 'Azul' },
+      { src: "imageshilados/ruanatriangularbeige.jpeg",  caption: 'Beige' },
+      { src: "imageshilados/ruanatriangularcruda.jpeg",  caption: 'Cruda' },
+    ]
+  }
+};
+
+let galeriaActual = [];
+let indexActual = 0;
+
+function openGallery(tipo) {
+  const g = galerías[tipo];
+  galeriaActual = g.fotos;
+  indexActual = 0;
+  document.getElementById('galleryTitle').textContent = g.titulo;
+  renderThumbs();
+  updateGallery();
+  const modal = document.getElementById('galleryModal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGallery() {
+  document.getElementById('galleryModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function updateGallery() {
+  const foto = galeriaActual[indexActual];
+  document.getElementById('galleryImg').src = foto.src;
+  document.getElementById('galleryImg').alt = foto.caption;
+  document.getElementById('galleryCaption').textContent = foto.caption;
+  document.getElementById('galleryCounter').textContent = (indexActual + 1) + ' / ' + galeriaActual.length;
+  document.querySelectorAll('.thumb-btn').forEach((t, i) => {
+    t.style.opacity = i === indexActual ? '1' : '0.45';
+    t.style.border = i === indexActual ? '2px solid white' : '2px solid transparent';
+  });
+}
+
+function nextPhoto() {
+  indexActual = (indexActual + 1) % galeriaActual.length;
+  updateGallery();
+}
+
+function prevPhoto() {
+  indexActual = (indexActual - 1 + galeriaActual.length) % galeriaActual.length;
+  updateGallery();
+}
+
+function renderThumbs() {
+  const container = document.getElementById('galleryThumbs');
+  container.innerHTML = '';
+  galeriaActual.forEach((foto, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'thumb-btn';
+    btn.style.cssText = 'background:none;border:2px solid transparent;padding:2px;cursor:pointer;border-radius:4px;';
+    const img = document.createElement('img');
+    img.src = foto.src;
+    img.style.cssText = 'width:56px;height:56px;object-fit:cover;border-radius:3px;display:block;';
+    btn.appendChild(img);
+    btn.onclick = () => { indexActual = i; updateGallery(); };
+    container.appendChild(btn);
+  });
+}
+
+// Cerrar con Escape o clic fuera
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeGallery(); });
+document.getElementById('galleryModal').addEventListener('click', function(e) {
+  if (e.target === this) closeGallery();
+});
+
+/* FILTRO */
+
+const filterButtons = document.querySelectorAll('.filter-btn');
+
+filterButtons.forEach(button => {
+
+  button.addEventListener('click', function() {
+
+    filterButtons.forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    this.classList.add('active');
+
+    const category = this.innerText.toLowerCase();
+
+    const products = document.querySelectorAll('.product-card');
+
+    products.forEach(product => {
+
+      const productCategory = product.dataset.category;
+
+      if (
+        category === 'todo' ||
+        productCategory === category
+      ) {
+        product.style.display = 'block';
+      } else {
+        product.style.display = 'none';
+      }
+
+    });
+
+  });
+
+});
+
+/* CARRITO */
+const WHATSAPP_NUMBER = '59894400646';
+let cart = [];
+try { cart = JSON.parse(localStorage.getItem('hilados_cart') || '[]'); } catch (e) { cart = []; }
+
+function saveCart() {
+  localStorage.setItem('hilados_cart', JSON.stringify(cart));
+}
+
+function addToCart(name, variant, price, btn) {
+  const key = name + '|' + variant + '|' + price;
+  const existing = cart.find(i => i.key === key);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ key, name, variant, price, qty: 1 });
+  }
+  saveCart();
+  updateCartUI();
+  if (btn) {
+    const original = btn.textContent;
+    btn.textContent = 'Agregado ✓';
+    btn.classList.add('added');
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('added'); }, 1100);
+  }
+}
+
+function changeQty(key, delta) {
+  const item = cart.find(i => i.key === key);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) cart = cart.filter(i => i.key !== key);
+  saveCart();
+  updateCartUI();
+}
+
+function removeFromCart(key) {
+  cart = cart.filter(i => i.key !== key);
+  saveCart();
+  updateCartUI();
+}
+
+function clearCart() {
+  if (cart.length && !confirm('¿Vaciar el carrito?')) return;
+  cart = [];
+  saveCart();
+  updateCartUI();
+}
+
+function openCart() {
+  updateCartUI();
+  document.getElementById('cartOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function escapeHtml(str) {
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+function updateCartUI() {
+  const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+  const badge = document.getElementById('cartBadge');
+  if (badge) {
+    badge.textContent = totalQty;
+    badge.style.display = totalQty > 0 ? 'flex' : 'none';
+  }
+
+  const container = document.getElementById('cartItems');
+  if (!container) return;
+
+  if (cart.length === 0) {
+    container.innerHTML = '<p class="cart-empty">Todavía no agregaste nada.<br>Elegí prendas del catálogo y tocá<br>"Agregar al carrito".</p>';
+    return;
+  }
+
+  container.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <p class="cart-item-name">${escapeHtml(item.name)}</p>
+      <p>${escapeHtml(item.variant)}</p>
+      <p>${escapeHtml(item.price)}</p>
+      <div class="cart-item-qty">
+        <button onclick="changeQty('${escapeHtml(item.key)}', -1)" aria-label="Restar">−</button>
+        <span>${item.qty}</span>
+        <button onclick="changeQty('${escapeHtml(item.key)}', 1)" aria-label="Sumar">+</button>
+      </div>
+      <button class="cart-remove" onclick="removeFromCart('${escapeHtml(item.key)}')">Quitar</button>
+    </div>
+  `).join('');
+}
+
+function sendCartWhatsApp() {
+  if (cart.length === 0) { alert('Tu carrito está vacío.'); return; }
+  let msg = 'Hola! Quiero consultar por estas prendas:\n\n';
+  cart.forEach(item => {
+    msg += `• ${item.name} (${item.variant}) x${item.qty} - ${item.price}\n`;
+  });
+  msg += '\nMe gustaría saber disponibilidad y forma de pago. ¡Gracias!';
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function initProductCartButtons() {
+  document.querySelectorAll('.product-card').forEach(card => {
+    const info = card.querySelector('.product-info');
+    if (!info || info.querySelector('.add-to-cart-btn')) return;
+    const name = info.querySelector('.product-name')?.textContent.trim() || 'Prenda';
+    const variant = info.querySelector('.product-artisan')?.textContent.trim() || '';
+    const price = info.querySelector('.product-price')?.textContent.trim() || '';
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'add-to-cart-btn';
+    btn.textContent = 'Agregar al carrito';
+    btn.onclick = function(e) {
+      e.stopPropagation();
+      addToCart(name, variant, price, btn);
+    };
+    info.appendChild(btn);
+  });
+  updateCartUI();
+}
+
+initProductCartButtons();
+
+</script>
