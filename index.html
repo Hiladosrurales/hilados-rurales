@@ -1,4 +1,3 @@
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap');
@@ -556,7 +555,6 @@
   </div>
 
   <div class="catalog-filters">
-    <button class="filter-btn active">Todo</button>
     <button class="filter-btn">Sacos</button>
     <button class="filter-btn">Buzos</button>
     <button class="filter-btn">Ruanas</button>
@@ -565,6 +563,7 @@
     <button class="filter-btn">Hombre</button>
    <button class="filter-btn">Lana</button>
    <button class="filter-btn">Cuero</button>
+   <button class="filter-btn">Chalecos</button>
   </div>
 
   <div class="product-grid">
@@ -1078,7 +1077,7 @@
   </div>
 </div>
 
-<div class="product-card" data-category="buzos" onclick="openGallery('chalecosnowflake')">
+<div class="product-card" data-category="chalecos" onclick="openGallery('chalecosnowflake')">
   <div class="product-img" style="background: #D8DCCF; cursor:pointer; position:relative;">
     <img src="imageshilados/chalecosnowflakecamel.jpeg" alt="Chaleco Snowflake" style="width:75%;height:auto;object-fit:contain;">
     <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER MODELOS →</div>
@@ -1219,7 +1218,7 @@
 
 <div class="product-card" data-category="ruanas" onclick="openGallery('troyastela')">
     <div class="product-img" style="background: #B8A898; cursor:pointer; position:relative;">
-      <img src="imageshilados/stelacruda.jpeg" alt="Ruana Troya Stela" style="width:75%;height:auto;object-fit:contain;">
+      <img src="imageshilados/ruanastelacruda.jpeg" alt="Ruana Troya Stela" style="width:75%;height:auto;object-fit:contain;">
       <div style="position:absolute;bottom:0.75rem;right:0.75rem;background:rgba(61,43,31,0.6);color:#fff;font-size:0.7rem;padding:0.3rem 0.6rem;letter-spacing:0.08em;">VER MODELOS →</div>
     </div>
     <div class="product-info">
@@ -1880,10 +1879,7 @@ lanatenidamedio:{
     titulo: 'Ruana Hilada en Rueca',
     fotos: [
       { src: "imageshilados/ruanaruecacruda.jpeg",      caption: 'Cruda' },
-      { src: "imageshilados/ruanaruecabordeaux.jpeg",  caption: 'Bordeaux' },
       { src: "imageshilados/ruanaruecachocolate.jpeg",      caption: 'Chocolate' },
-      { src: "imageshilados/ruanaruecacuadros.jpeg",      caption: 'Cuadros' },
-      { src: "imageshilados/ruanaruecafucsia.jpeg",      caption: 'Fucsia' },
       { src: "imageshilados/ruanaruecanegra.jpeg",      caption: 'Negra' },
     ]
   },
@@ -1952,6 +1948,9 @@ lanatenidamedio:{
       { src: "imageshilados/ruanatriangularazul.jpeg",  caption: 'Azul' },
       { src: "imageshilados/ruanatriangularbeige.jpeg",  caption: 'Beige' },
       { src: "imageshilados/ruanatriangularcruda.jpeg",  caption: 'Cruda' },
+      { src: "imageshilados/ruanatriangulargris.jpeg",  caption: 'Gris' },
+      { src: "imageshilados/ruanatriangularbordeaux.jpeg",  caption: 'Bordeaux' },
+      { src: "imageshilados/ruanatriangularterracota.jpeg",  caption: 'Terracota' },
     ]
   }
 };
@@ -2043,7 +2042,6 @@ filterButtons.forEach(button => {
       const productCategory = product.dataset.category;
 
       if (
-        category === 'todo' ||
         productCategory === category
       ) {
         product.style.display = 'block';
